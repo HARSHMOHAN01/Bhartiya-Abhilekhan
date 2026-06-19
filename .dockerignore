@@ -1,0 +1,17 @@
+.git
+.gitignore
+node_modules
+dist
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.local
+.env.development
+.env.production
+backend/env
+backend/venv
+frontend/dist
+db_data
+pg_data
