@@ -1,6 +1,6 @@
 # Bhartiya Abhilekhan - Enterprise IMS
 
-**Bhartiya Abhilekhan** is an Enterprise Inventory & Order Management System. This monorepo is containerized via Docker Compose, orchestrating a FastAPI backend (Python), PostgreSQL database, and React frontend served via Nginx.
+**Bhartiya Abhilekhan(भारतीय अभिलेखन)** is an Enterprise Inventory & Order Management System. This monorepo is containerized via Docker Compose, orchestrating a FastAPI backend (Python), PostgreSQL database, and React frontend served via Nginx.
 
 ---
 
@@ -31,39 +31,39 @@ Spin up all orchestrated services using Docker Compose:
 ```bash
 docker compose up -d --build
 ```
-- **Web Interface**: Open [http://localhost](http://localhost) on port `80`.
-- **API Swagger Docs**: Open [http://localhost:8000/docs](http://localhost:8000/docs).
+- **Web Interface**: Open [http://localhost] on port `80` or already deployed link: "https://bhartiya-abhilekhan.vercel.app/".
 
 ### 🔑 Test Authenticator Credentials (OTP)
 For rapid local testing, the database is seeded on startup with two default accounts. Use Google Authenticator or another TOTP generator app:
 
 - **System Admin**:
   - Email: `admin@bhartiya.com`
-  - Manual Setup Key: `JBSW Y3DP EHPK 3PXP` (displays code for login)
+  - Administration changes from this email can be made.
 - **Staff Operator**:
   - Email: `staff@bhartiya.com`
-  - Manual Setup Key: `JBSW Y3DP EHPK 3PXQ` (displays code for login)
+  - Normal Stock change and investment can be done through this.
+  **Activation** Both emails will get activation from Google OAuth via Google Authenticator.
 
 ---
 
 ## ☁️ Cloud Deployment Guide
 
-### Git Initialization
+### Git Initialisation
 ```bash
 git init
-git add .
+git add.
 git commit -m "feat: initial release of Bhartiya Abhilekhan"
 git branch -M main
 git remote add origin https://github.com/<username>/bhartiya-abhilekhan.git
 git push -u origin main
 ```
 
-### Deploy Backend (Render / Railway)
+### Deploy Backend (Render)
 - Link the `/backend` directory.
 - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port 8000`
-- Variables: Set `DATABASE_URL` pointing to your managed postgres, and define `JWT_SECRET`.
+- Variables: Set `DATABASE_URL` pointing to your managed PostgreSQL, and define `JWT_SECRET`.
 
-### Deploy Frontend (Vercel / Netlify)
+### Deploy Frontend (Vercel)
 - Link the `/frontend` directory.
 - Build command: `npm run build`
 - Output Directory: `dist`
