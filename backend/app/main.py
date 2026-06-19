@@ -26,6 +26,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+@app.get("/healthz", tags=["Health"])
+def health_check():
+    return {"status": "operational", "service": "Bhartiya Abhilekhan API"}
+
 # Startup event to seed database
 @app.on_event("startup")
 def seed_database():
