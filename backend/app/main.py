@@ -56,7 +56,7 @@ def seed_database():
         if db.query(models.Customer).count() == 0:
             # We seed a static TOTP secret for easy setup (secret: JBSWY3DPEHPK3PXP -> Google Authenticator code generator)
             admin_customer = models.Customer(
-                full_name="Alex Rivera",
+                full_name="Harsh Mohan",
                 email="admin@bhartiya.com",
                 phone_number="+1 (555) 123-4567",
                 totp_secret="JBSWY3DPEHPK3PXP",  # Manual Setup key: JBSW Y3DP EHPK 3PXP
@@ -65,7 +65,7 @@ def seed_database():
             )
             
             staff_customer = models.Customer(
-                full_name="Jane Doe",
+                full_name="Harsh Mohan",
                 email="staff@bhartiya.com",
                 phone_number="+1 (555) 987-6543",
                 totp_secret="JBSWY3DPEHPK3PXQ",  # Manual Setup key: JBSW Y3DP EHPK 3PXQ
