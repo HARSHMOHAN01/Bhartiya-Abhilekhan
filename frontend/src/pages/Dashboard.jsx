@@ -207,7 +207,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-4 border-t border-slate-800/60 pt-4 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800/60 pt-4 text-center">
             <div>
               <span className="block text-[10px] text-slate-500 uppercase font-bold">Throughput</span>
               <span className="text-sm font-extrabold text-slate-200">14.2k <span className="text-emerald-400 text-xs font-bold font-sans">↑ 4%</span></span>

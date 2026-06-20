@@ -426,8 +426,8 @@ export default function StaffOrders() {
             </div>
           </div>
 
-          <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
-            <div className="bg-slate-950 p-4 border border-slate-850 rounded-xl text-right min-w-[200px] glow-blue">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto justify-between md:justify-end">
+            <div className="bg-slate-950 p-4 border border-slate-850 rounded-xl text-right w-full sm:w-auto sm:min-w-[200px] glow-blue">
               <span className="block text-[9px] font-bold uppercase tracking-wider text-slate-500">ESTIMATED TOTAL</span>
               <span className="text-2xl font-extrabold text-blue-500 font-sans">
                 ${estimatedTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}
@@ -441,7 +441,7 @@ export default function StaffOrders() {
             <button
               onClick={handleSubmitOrder}
               disabled={orderLoading || cartItems.length === 0 || cartItems.some(item => item.quantity > item.product.quantity || item.quantity <= 0)}
-              className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 disabled:hover:bg-emerald-600 text-white font-bold text-xs py-4 px-6 rounded-xl flex items-center gap-2 transition-all shadow-md shadow-emerald-600/10 min-h-[56px]"
+              className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 disabled:hover:bg-emerald-600 text-white font-bold text-xs py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md shadow-emerald-600/10 min-h-[56px]"
             >
               {orderLoading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />

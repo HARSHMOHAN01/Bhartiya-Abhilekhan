@@ -132,11 +132,11 @@ export default function Login() {
   };
 
   return (
-    <div className="flex h-screen w-screen bg-[#0b0f19] text-slate-100 overflow-hidden font-sans">
+    <div className="flex flex-col lg:flex-row min-h-screen w-screen bg-[#0b0f19] text-slate-100 overflow-y-auto lg:overflow-hidden font-sans">
       {toastMsg && <Toast message={toastMsg} type={toastType} onClose={() => setToastMsg(null)} />}
 
       {/* Left Column: Branding / Marketing */}
-      <div className="w-1/2 bg-gradient-to-br from-[#0f172a] via-[#0d1527] to-[#1e1b4b] border-r border-slate-800/60 p-16 flex flex-col justify-between relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#0f172a] via-[#0d1527] to-[#1e1b4b] border-r border-slate-800/60 p-16 flex-col justify-between relative overflow-hidden">
         {/* Subtle grid pattern background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"></div>
         
@@ -183,10 +183,10 @@ export default function Login() {
       </div>
 
       {/* Right Column: Dynamic Passcode Panel */}
-      <div className="w-1/2 flex items-center justify-center p-16 bg-[#0b0f19] relative">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 lg:p-16 bg-[#0b0f19] relative min-h-screen lg:min-h-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_400px,#1e293b,transparent_80%)] opacity-30 pointer-events-none"></div>
         
-        <div className="w-full max-w-md bg-slate-900 border border-slate-800/80 rounded-2xl p-8 shadow-2xl relative z-10">
+        <div className="w-full max-w-md bg-slate-900 border border-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-2xl relative z-10 my-8 lg:my-0">
           
           {/* Mode 1: Register - Step 1: User Profile Setup */}
           {isRegistering && setupStep === 1 && (
@@ -268,13 +268,13 @@ export default function Login() {
                 <img 
                   src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(registrationData.provisioning_uri)}`}
                   alt="Google Authenticator QR Code"
-                  className="w-44 h-44 object-contain"
+                  className="w-40 h-40 sm:w-44 sm:h-44 object-contain"
                 />
               </div>
 
               <div className="bg-slate-950 border border-slate-800 rounded-lg p-3 text-center mb-6">
                 <span className="block text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-1">Manual Entry Secret Key</span>
-                <span className="text-xs font-mono font-bold tracking-widest text-slate-200 uppercase selection:bg-blue-600">
+                <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-slate-200 uppercase selection:bg-blue-600 block break-all">
                   {registrationData.secret.match(/.{1,4}/g).join(' ')}
                 </span>
               </div>
@@ -284,7 +284,7 @@ export default function Login() {
                   <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 text-center">Enter 6-Digit TOTP Verification Code</label>
                   
                   {/* Digit inputs */}
-                  <div className="flex gap-2 justify-center">
+                  <div className="flex gap-1.5 sm:gap-2 justify-center">
                     {code.map((digit, idx) => (
                       <input
                         key={idx}
@@ -294,7 +294,7 @@ export default function Login() {
                         value={digit}
                         onChange={(e) => handleCodeChange(idx, e.target.value)}
                         onKeyDown={(e) => handleKeyDown(idx, e)}
-                        className="w-12 h-12 text-center text-lg font-bold bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white"
+                        className="w-9 h-9 sm:w-12 sm:h-12 text-center text-sm sm:text-lg font-bold bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white"
                       />
                     ))}
                   </div>
@@ -346,7 +346,7 @@ export default function Login() {
                   <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Authentication Code</label>
                   
                   {/* Digit inputs */}
-                  <div className="flex gap-2 justify-center">
+                  <div className="flex gap-1.5 sm:gap-2 justify-center">
                     {code.map((digit, idx) => (
                       <input
                         key={idx}
@@ -356,7 +356,7 @@ export default function Login() {
                         value={digit}
                         onChange={(e) => handleCodeChange(idx, e.target.value)}
                         onKeyDown={(e) => handleKeyDown(idx, e)}
-                        className="w-12 h-12 text-center text-lg font-bold bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white"
+                        className="w-9 h-9 sm:w-12 sm:h-12 text-center text-sm sm:text-lg font-bold bg-slate-950 border border-slate-800 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-white"
                       />
                     ))}
                   </div>

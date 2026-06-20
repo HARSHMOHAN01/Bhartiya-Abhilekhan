@@ -11,7 +11,9 @@ import {
   LogOut, 
   Bell, 
   HelpCircle,
-  Box
+  Box,
+  Menu,
+  X
 } from 'lucide-react';
 
 export const Layout = ({ children }) => {
@@ -22,6 +24,7 @@ export const Layout = ({ children }) => {
   const [notificationsOpen, setNotificationsOpen] = React.useState(false);
   const [profileOpen, setProfileOpen] = React.useState(false);
   const [notifications, setNotifications] = React.useState([]);
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   const profileRef = React.useRef(null);
   const notificationsRef = React.useRef(null);
@@ -124,24 +127,12 @@ export const Layout = ({ children }) => {
   const currentLinks = isAdmin ? adminLinks : staffLinks;
 
   // Header titles mapping
-  const getHeaderTitle = () => {
-    const path = location.pathname;
-    if (path === '/') return 'System Admin';
-    if (path === '/products') return 'Inventory System';
-    if (path === '/customers') return 'Customer Directory';
-    if (path === '/orders') return 'Order Management';
-    if (path === '/workspace') return 'Focus Workspace';
-    if (path === '/create-order') return 'Create New Order';
-    return 'Enterprise IMS';
-  };
-
-  return (
-    <div className="flex h-screen bg-[#0b0f19] overflow-hidden text-slate-100 font-sans">
-      {/* Sidebar */}
-      <aside className="w-64 bg-[#0f172a] border-r border-slate-800 flex flex-col justify-between z-20 shrink-0">
-        <div>
-          {/* Logo Section */}
-          <div className="p-6 flex items-center gap-3 border-b border-slate-800/60">
+  const SidebarContent = () => (
+    <div className="flex flex-col justify-between h-full bg-[#0f172a]">
+      <div>
+        {/* Logo Section */}
+        <div className="p-6 flex items-center justify-between border-b border-slate-800/60">
+          <div className="flex items-center gap-3">
             <div className="bg-blue-600 p-2 rounded-lg text-white">
               <Box className="w-5 h-5" />
             </div>
@@ -150,60 +141,98 @@ export const Layout = ({ children }) => {
               <p className="text-xs text-slate-400 font-medium">Operational Suite</p>
             </div>
           </div>
-
-          {/* Navigation Links */}
-          <nav className="p-4 space-y-1.5 flex-1">
-            {currentLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <NavLink
-                  key={link.name}
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-150 ${
-                      isActive
-                        ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
-                        : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
-                    }`
-                  }
-                >
-                  <Icon className="w-5 h-5" />
-                  {link.name}
-                </NavLink>
-              );
-            })}
-          </nav>
-        </div>
-
-        {/* Profile Card / Logout */}
-        <div className="p-4 border-t border-slate-800/80 bg-slate-900/40">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center font-bold text-blue-400">
-              {user?.full_name?.substring(0, 2).toUpperCase() || 'US'}
-            </div>
-            <div className="overflow-hidden">
-              <h4 className="text-xs font-bold text-slate-200 truncate">{user?.full_name}</h4>
-              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 inline-block mt-0.5">
-                {user?.role}
-              </span>
-            </div>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-slate-850 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-slate-200 text-xs font-bold transition-all duration-150"
+          {/* Close button on mobile/tablet */}
+          <button 
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden text-slate-400 hover:text-slate-200 transition-colors p-1.5 rounded-lg hover:bg-slate-800/50"
           >
-            <LogOut className="w-4 h-4" />
-            Sign Out
+            <X className="w-5 h-5" />
           </button>
         </div>
+
+        {/* Navigation Links */}
+        <nav className="p-4 space-y-1.5 flex-1">
+          {currentLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <NavLink
+                key={link.name}
+                to={link.path}
+                onClick={() => setSidebarOpen(false)}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-150 ${
+                    isActive
+                      ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
+                      : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
+                  }`
+                }
+              >
+                <Icon className="w-5 h-5" />
+                {link.name}
+              </NavLink>
+            );
+          })}
+        </nav>
+      </div>
+
+      {/* Profile Card / Logout */}
+      <div className="p-4 border-t border-slate-800/80 bg-slate-900/40">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center font-bold text-blue-400">
+            {user?.full_name?.substring(0, 2).toUpperCase() || 'US'}
+          </div>
+          <div className="overflow-hidden">
+            <h4 className="text-xs font-bold text-slate-200 truncate">{user?.full_name}</h4>
+            <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 inline-block mt-0.5">
+              {user?.role}
+            </span>
+          </div>
+        </div>
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-slate-850 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-slate-200 text-xs font-bold transition-all duration-150"
+        >
+          <LogOut className="w-4 h-4" />
+          Sign Out
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="flex h-screen bg-[#0b0f19] overflow-hidden text-slate-100 font-sans">
+      {/* Desktop Sidebar */}
+      <aside className="w-64 bg-[#0f172a] border-r border-slate-800 z-20 shrink-0 hidden lg:block">
+        <SidebarContent />
+      </aside>
+
+      {/* Mobile Drawer Backdrop */}
+      {sidebarOpen && (
+        <div 
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-40 lg:hidden"
+        />
+      )}
+
+      {/* Mobile Drawer Sidebar */}
+      <aside className={`fixed inset-y-0 left-0 w-64 bg-[#0f172a] border-r border-slate-800 z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <SidebarContent />
       </aside>
 
       {/* Main Workspace Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header Bar */}
-        <header className="h-16 bg-[#0f172a] border-b border-slate-800 flex items-center justify-between px-8 z-10 shrink-0">
-          <div className="flex items-center gap-6 flex-1">
-            <h2 className="text-lg font-bold text-white tracking-tight">{getHeaderTitle()}</h2>
+        <header className="h-16 bg-[#0f172a] border-b border-slate-800 flex items-center justify-between px-4 md:px-8 z-10 shrink-0">
+          <div className="flex items-center gap-3 md:gap-6 flex-1">
+            {/* Hamburger Button */}
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="lg:hidden p-1.5 text-slate-400 hover:text-slate-200 rounded-lg hover:bg-slate-800/40 transition-colors"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+
+            <h2 className="text-base md:text-lg font-bold text-white tracking-tight">{getHeaderTitle()}</h2>
             
             {/* Global Search Bar */}
             <div className="relative w-96 hidden md:block">
@@ -252,7 +281,7 @@ export const Layout = ({ children }) => {
                         <div key={n.id} className="flex justify-between items-start gap-2 text-[11px] leading-relaxed text-slate-305 hover:text-slate-200 transition-colors py-1 group">
                           <div className="flex-1">
                             <p className="font-semibold text-slate-300">{n.text}</p>
-                            <span className="text-[9px] text-slate-500 font-medium block mt-0.5">{n.time}</span>
+                            <span className="text-[9px] text-slate-550 font-medium block mt-0.5">{n.time}</span>
                           </div>
                           <button 
                             onClick={() => setNotifications(prev => prev.filter(item => item.id !== n.id))}
@@ -283,7 +312,7 @@ export const Layout = ({ children }) => {
               >
                 <div className="text-right">
                   <span className="text-xs font-bold block text-slate-200 leading-none">{user?.full_name}</span>
-                  <span className="text-[10px] text-slate-500 font-medium block mt-0.5 leading-none">
+                  <span className="text-[10px] text-slate-550 font-medium block mt-0.5 leading-none">
                     {user?.role === 'admin' ? 'System Admin' : 'Staff Operator'}
                   </span>
                 </div>
@@ -313,7 +342,7 @@ export const Layout = ({ children }) => {
         </header>
 
         {/* Content View Area */}
-        <main className="flex-1 overflow-y-auto p-8 bg-[#0b0f19]">
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 bg-[#0b0f19]">
           {children}
         </main>
       </div>
