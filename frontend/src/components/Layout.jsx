@@ -179,7 +179,7 @@ export const Layout = ({ children }) => {
       <div className="p-4 border-t border-slate-800/80 bg-slate-900/40">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center font-bold text-blue-400">
-            {user?.full_name?.substring(0, 2)?.toUpperCase() || 'US'}
+            {user?.full_name?.substring(0, 2).toUpperCase() || 'US'}
           </div>
           <div className="overflow-hidden">
             <h4 className="text-xs font-bold text-slate-200 truncate">{user?.full_name}</h4>
@@ -317,7 +317,7 @@ export const Layout = ({ children }) => {
                   </span>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 overflow-hidden flex items-center justify-center text-xs font-bold text-slate-400">
-                  {user?.full_name?.substring(0, 1)?.toUpperCase() || 'U'}
+                  {user?.full_name?.substring(0, 1).toUpperCase() || 'U'}
                 </div>
               </button>
 
