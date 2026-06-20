@@ -182,7 +182,7 @@ export default function Orders() {
                           <td className="py-4 px-6">
                             <div className="flex items-center gap-3">
                               <div className="w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center font-bold text-slate-400 text-[10px]">
-                                {order.customer_name?.substring(0, 2).toUpperCase()}
+                                {order.customer_name?.substring(0, 2)?.toUpperCase()}
                               </div>
                               <div>
                                 <span className="block font-bold text-slate-200">{order.customer_name}</span>
