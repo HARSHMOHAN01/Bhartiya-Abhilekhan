@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Details | Kinetic Enterprise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#004ac6",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-tertiary-container": "#c1ffc5",
+                        "tertiary": "#006229",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "surface": "#f8f9ff",
+                        "inverse-surface": "#27313e",
+                        "surface-container-low": "#eef4ff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#007e37",
+                        "inverse-primary": "#b4c5ff",
+                        "on-secondary-fixed": "#121c2a",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed": "#d9e3f6",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "outline": "#737686",
+                        "primary-fixed": "#dbe1ff",
+                        "on-surface-variant": "#434655",
+                        "on-tertiary-fixed": "#002109",
+                        "error": "#ba1a1a",
+                        "on-background": "#121c28",
+                        "on-secondary-container": "#596373",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-container-highest": "#d9e3f4",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#d9e3f4",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#0053db",
+                        "secondary-container": "#d6e0f3",
+                        "on-surface": "#121c28",
+                        "on-primary-fixed": "#00174b",
+                        "primary-container": "#2563eb",
+                        "secondary": "#555f6f",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#dfe9fa",
+                        "background": "#f8f9ff",
+                        "surface-dim": "#d1dbec",
+                        "on-primary-container": "#eeefff",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xl": "32px",
+                        "sm": "12px",
+                        "xs": "8px",
+                        "gutter": "20px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                        "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F9FAFB;
+            font-family: 'Inter', sans-serif;
+            color: #121c28;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .order-card {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E5E7EB;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: 0;
+            width: 2px;
+            background-color: #E5E7EB;
+        }
+        .timeline-item:last-child .timeline-line::before {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-inverse-surface flex flex-col shadow-md z-50">
+<div class="p-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-surface-container-lowest">Kinetic Enterprise</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Admin Console</p>
+</div>
+<nav class="flex-1 mt-md">
+<a class="flex items-center gap-sm text-on-surface-variant hover:text-surface-bright px-md py-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:text-surface-bright px-md py-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-sm bg-secondary-fixed-variant text-primary-fixed border-l-4 border-primary-fixed px-md py-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:text-surface-bright px-md py-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:text-surface-bright px-md py-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-md text-label-md">Suppliers</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:text-surface-bright px-md py-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="p-md mt-auto border-t border-outline-variant/20">
+<button class="w-full py-sm bg-primary-container text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary transition-all mb-md">
+                New Order
+            </button>
+<a class="flex items-center gap-sm text-on-surface-variant hover:text-surface-bright px-md py-xs mb-xs transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:text-surface-bright px-md py-xs transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] min-h-screen">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 bg-surface flex justify-between items-center h-16 px-lg border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-md">
+<button class="p-xs hover:bg-surface-container-low rounded-full transition-all active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex items-center gap-sm">
+<h2 class="font-headline-md text-headline-md font-extrabold text-primary">Order Management</h2>
+<span class="text-outline-variant">/</span>
+<span class="font-label-md text-label-md text-on-surface-variant">#ORD-8821</span>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-md">
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+<div class="flex items-center gap-sm border-l border-outline-variant pl-lg">
+<div class="text-right">
+<p class="font-label-md text-label-md font-bold">Admin User</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Operator</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a logistics manager in a modern corporate setting, soft studio lighting, high resolution, wearing business casual attire against a clean neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgcimwSw2OllhcuIyg4U-zmZcuWXtCpGoDDEfjSF6C9DcfkImytdvhznbPlpzU2jFcavPp6C56Y_vwCVDYE1Qa1AkRwICL4ldjygNastua5ABr7mV82GE7xHyWNr3YVCEaqjmtzsey4oGhPvo00GLh-loGWtGz1Ewa9pJqxOF0ssvCR95QPAk3EJTUvp1MJN-_L3c8IvSEtkp_90Cfq7ol5zUI4HJ4s2XnzhB7RjIOSCjIWoWHfLLIpW1FYsYtqyyLrMYqHwYsQn8y"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-xl max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Order #ORD-8821</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Placed on October 24, 2023 at 2:45 PM</p>
+</div>
+<div class="flex gap-md">
+<span class="px-sm py-xs bg-tertiary-container/10 text-tertiary-container font-label-md text-label-md rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Shipped
+                    </span>
+<button class="px-md py-xs bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md rounded-lg hover:bg-surface-container-low transition-all">
+                        Print Invoice
+                    </button>
+<button class="px-md py-xs bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:shadow-lg transition-all">
+                        Update Tracking
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Details & Items -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- Customer Information Card -->
+<section class="order-card p-lg">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">person</span>
+<h4 class="font-headline-md text-headline-md">Customer Information</h4>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Name</p>
+<p class="font-body-lg text-body-lg font-semibold">Alexander Sterling</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Contact</p>
+<p class="font-body-lg text-body-lg font-semibold">a.sterling@example.com</p>
+<p class="font-body-md text-body-md text-on-surface-variant">+1 (555) 098-7654</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Shipping Address</p>
+<p class="font-body-md text-body-md">742 Industrial Way, Suite 400<br/>North Austin, TX 78758<br/>United States</p>
+</div>
+</div>
+</section>
+<!-- Order Items Table -->
+<section class="order-card overflow-hidden">
+<div class="p-lg flex items-center justify-between border-b border-outline-variant/30">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">package_2</span>
+<h4 class="font-headline-md text-headline-md">Order Items</h4>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">3 Items Total</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Product</th>
+<th class="px-md py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">SKU</th>
+<th class="px-md py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-center">Qty</th>
+<th class="px-md py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Price</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Subtotal</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-12 h-12 rounded-lg border border-outline-variant object-cover bg-surface" data-alt="A high-end industrial sensor unit with brushed metallic finish, professional studio lighting highlighting technical details, minimalist grey background, extremely sharp focus and clean edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpQFadvSgCTDa6M4fsLIH7QDGSG5aSy0TfAckrbawjutJPi40hyuxzyRTARiTB9iXGM0MLrhNQgHLesRYS_JAEU1G8u476A6tzjvF9GbfCkFSzx5ZiQOdaedNucc4ADQ34WaSX4cmK_EpsU1dANmFMvk3IpX6play72jT_94M2Kstu3TpzdEqfdy3RDs3mjQSZJaXiAiQkqeKnh0rohtVDh-t3pC47lgOz3rIGHMaRotcz-9rhFZmrsLpV0TCUfE5WxuSbPXI_GW0V"/>
+<div>
+<p class="font-body-md text-body-md font-bold">Kinetic Flux Sensor X1</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Precision Engineering Series</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md font-body-md text-body-md font-mono">KF-X1-992</td>
+<td class="px-md py-md font-body-md text-body-md text-center">2</td>
+<td class="px-md py-md font-body-md text-body-md text-right">$499.00</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-right">$998.00</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-12 h-12 rounded-lg border border-outline-variant object-cover bg-surface" data-alt="A macro shot of a gold-plated electronic circuit connector, sophisticated industrial design with intricate wiring details, bokeh background of a high-tech lab, vibrant blue and silver accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMVjCZvJZ2FMFqGRYKYgmgjlVVrESKSjlNJF6Ru4gnUuh7odwPepq3z2Na8OaQ0-MHTbINRAAnTUXvZvSX9k3lUI7RijozEs5QMuPqUOp0zl40i8gtGuRrYV7DNe9d-zQseASDvTFU5WRH9hXqbJt6o6M7eU2VVvTO9tHdoHTCCg2d1Gwc9fJCXHexRJPJVw32_aw-C06cZ-AiEoCs6LC0MlwdLZW601MWihdvoc1CssUyb86YGU_k_38EJK_T82E8CTZrXM_Eyy-P"/>
+<div>
+<p class="font-body-md text-body-md font-bold">Gold-Plated Connector Kit</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Maintenance Accessories</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md font-body-md text-body-md font-mono">ACC-GP-12</td>
+<td class="px-md py-md font-body-md text-body-md text-center">5</td>
+<td class="px-md py-md font-body-md text-body-md text-right">$45.00</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-right">$225.00</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-12 h-12 rounded-lg border border-outline-variant object-cover bg-surface" data-alt="An industrial-grade fiber optic cable spool, rugged black shielding with neon blue markers, studio product photography with dramatic rim lighting, clean corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkUI5LAXy77sElaQiWsWCs5CVd-Gaaopp-OZkJ4yLlYHbzbkTfg8Mo5Pmi274H-BxX6-CmXbb7ShwaNGt3-VqjMrVXsx-Gp5SqNeOVEw7TVmgSJHAhxWI0qClAbPPrWB0FhWBA5Fk1loogrtbaF5BfPxBTu8GTOvIWeSuvHeEqSpui2tj36jBFNh0aNgxPz8TFajfQh3WybZhZFbEkjk2Od1icsj0qln9j-qTghoOIjL_7ato7WsAmdybh6AdBGWkTbRFAyAVxxhxF"/>
+<div>
+<p class="font-body-md text-body-md font-bold">Fiber Optic Cable (50m)</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Data Infrastructure</p>
+</div>
+</div>
+</td>
+<td class="px-md py-md font-body-md text-body-md font-mono">NET-FO-50M</td>
+<td class="px-md py-md font-body-md text-body-md text-center">1</td>
+<td class="px-md py-md font-body-md text-body-md text-right">$185.50</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-right">$185.50</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column: Summary & Timeline -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- Financial Summary Card -->
+<section class="order-card p-lg">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">payments</span>
+<h4 class="font-headline-md text-headline-md">Financial Summary</h4>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Subtotal</span>
+<span class="font-body-md text-body-md">$1,408.50</span>
+</div>
+<div class="flex justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Tax (8.25%)</span>
+<span class="font-body-md text-body-md">$116.20</span>
+</div>
+<div class="flex justify-between pb-sm border-b border-outline-variant/20">
+<span class="font-body-md text-body-md text-on-surface-variant">Shipping Fee (Standard)</span>
+<span class="font-body-md text-body-md">$25.00</span>
+</div>
+<div class="flex justify-between pt-xs">
+<span class="font-headline-md text-headline-md font-bold">Total Amount</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">$1,549.70</span>
+</div>
+</div>
+<div class="mt-lg p-md bg-surface-container-low rounded-lg border border-outline-variant/30">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-on-secondary-container mt-0.5">credit_card</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Payment Method</p>
+<p class="font-body-md text-body-md font-semibold">Corporate Card (•••• 9012)</p>
+<p class="font-label-sm text-label-sm text-tertiary-container mt-1">Transaction Verified</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline Card -->
+<section class="order-card p-lg">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h4 class="font-headline-md text-headline-md">Order Timeline</h4>
+</div>
+<div class="relative space-y-lg pl-base">
+<!-- Ordered -->
+<div class="timeline-item relative pl-lg timeline-line">
+<span class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</span>
+<div>
+<p class="font-body-md text-body-md font-bold">Order Received</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Oct 24, 2023 • 02:45 PM</p>
+<p class="font-body-md text-body-md mt-xs text-on-surface-variant">Initial verification and payment processing complete.</p>
+</div>
+</div>
+<!-- Packed -->
+<div class="timeline-item relative pl-lg timeline-line">
+<span class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</span>
+<div>
+<p class="font-body-md text-body-md font-bold">Inventory Packed</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Oct 25, 2023 • 09:12 AM</p>
+<p class="font-body-md text-body-md mt-xs text-on-surface-variant">Quality checks passed. Package sealed at Warehouse B.</p>
+</div>
+</div>
+<!-- Shipped -->
+<div class="timeline-item relative pl-lg timeline-line">
+<span class="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center z-10 shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</span>
+<div>
+<p class="font-body-md text-body-md font-bold text-primary">In Transit</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Oct 25, 2023 • 04:30 PM</p>
+<p class="font-body-md text-body-md mt-xs text-on-surface-variant">Handed over to FedEx. Tracking: #FX-882910-12</p>
+</div>
+</div>
+<!-- Delivered (Pending) -->
+<div class="timeline-item relative pl-lg">
+<span class="absolute left-0 top-0 w-6 h-6 rounded-full border-2 border-outline-variant bg-surface-container-low flex items-center justify-center z-10">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+</span>
+<div class="opacity-50">
+<p class="font-body-md text-body-md font-bold">Delivered</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Estimated: Oct 28, 2023</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Internal Notes Section -->
+<div class="mt-gutter grid grid-cols-12 gap-gutter">
+<section class="col-span-12 order-card p-lg">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary">sticky_note_2</span>
+<h4 class="font-headline-md text-headline-md">Internal Logistics Notes</h4>
+</div>
+<div class="bg-surface-container-low p-md rounded-lg border-l-4 border-primary">
+<p class="font-body-md text-body-md italic text-on-surface-variant">"Customer requested standard cardboard packaging. Sensitive electronic components verified for static-free sealing. Expedite if possible due to high-value sensor calibration window." — <span class="font-bold">Dispatch Lead</span></p>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Simple Hover & Interaction Logic -->
+<script>
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => el.classList.add('scale-95'));
+            el.addEventListener('mouseup', () => el.classList.remove('scale-95'));
+            el.addEventListener('mouseleave', () => el.classList.remove('scale-95'));
+        });
+    </script>
+</body></html>

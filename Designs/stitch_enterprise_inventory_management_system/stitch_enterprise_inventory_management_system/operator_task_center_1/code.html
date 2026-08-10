@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory Pro | Operator Dashboard</title>
+<!-- Google Fonts: Manrope for Headings, Work Sans for Body, JetBrains Mono for Labels -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Work+Sans:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        
+        /* Custom Ambient Shadows per Style Guidance */
+        .card-elevation {
+            box-shadow: 0 12px 24px -4px rgba(0, 106, 97, 0.04);
+        }
+        
+        .overlay-elevation {
+            box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Pressable button effect */
+        .btn-press:active {
+            transform: translateY(2px);
+            box-shadow: none !important;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed-dim": "#80d5cb",
+                      "tertiary-fixed": "#d8e5e2",
+                      "on-primary-container": "#f4fffc",
+                      "secondary": "#006a63",
+                      "on-background": "#1a1c1b",
+                      "on-primary": "#ffffff",
+                      "tertiary": "#525e5c",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e3e2e0",
+                      "surface-container": "#efeeec",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#f3fffc",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f4f3f1",
+                      "on-secondary-fixed-variant": "#00504a",
+                      "surface-dim": "#dadad8",
+                      "primary-fixed": "#89f5e7",
+                      "inverse-surface": "#2f3130",
+                      "background": "#faf9f7",
+                      "tertiary-fixed-dim": "#bcc9c6",
+                      "on-primary-fixed-variant": "#005049",
+                      "inverse-on-surface": "#f1f1ef",
+                      "surface-tint": "#006a61",
+                      "surface-bright": "#faf9f7",
+                      "on-tertiary-fixed-variant": "#3d4947",
+                      "secondary-container": "#99efe5",
+                      "on-secondary-fixed": "#00201d",
+                      "on-tertiary-fixed": "#121e1c",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed": "#00201d",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#006f67",
+                      "on-surface": "#1a1c1b",
+                      "primary-fixed-dim": "#6bd8cb",
+                      "secondary-fixed": "#9cf2e8",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-surface-variant": "#3d4947",
+                      "primary-container": "#008378",
+                      "outline-variant": "#bcc9c6",
+                      "surface-container-highest": "#e3e2e0",
+                      "inverse-primary": "#6bd8cb",
+                      "outline": "#6d7a77",
+                      "primary": "#00685f",
+                      "surface-container-high": "#e9e8e6",
+                      "surface": "#faf9f7",
+                      "tertiary-container": "#6b7775"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "16px",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "rail-width": "72px",
+                      "margin-tablet": "24px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "unit": "8px",
+                      "margin-desktop": "40px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Manrope"],
+                      "body-lg": ["Work Sans"],
+                      "body-md": ["Work Sans"],
+                      "label-md": ["JetBrains Mono"],
+                      "headline-lg": ["Manrope"],
+                      "headline-lg-mobile": ["Manrope"],
+                      "display-lg": ["Manrope"],
+                      "label-sm": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                      "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                      "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                      "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                      "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                      "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                      "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar (Shared Component implementation) -->
+<!-- Following Rule: Full top-row on web, responsive layout, no border-b (using separation_logic) -->
+<header class="bg-surface-container-lowest h-16 w-full sticky top-0 z-50 flex items-center justify-between px-margin-desktop border-b border-outline-variant shadow-sm transition-all duration-200">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md text-on-surface tracking-tight">Inventory Pro</span>
+<nav class="hidden md:flex items-center gap-6 h-full">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary h-16 flex items-center px-1" href="#">My Tasks</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low px-3 py-1 rounded-lg transition-all duration-200" href="#">Inventory Scan</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low px-3 py-1 rounded-lg transition-all duration-200" href="#">Order Fulfillment</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low px-3 py-1 rounded-lg transition-all duration-200" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<button class="btn-press bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md flex items-center gap-2 shadow-[0_2px_0_0_rgba(0,0,0,0.1)] hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+                Quick Scan
+            </button>
+<img class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a warehouse operations manager in their early 30s, wearing a clean charcoal polo shirt. The lighting is soft and natural, suggesting a high-end corporate environment. The background is slightly blurred showing a modern, well-lit logistics office with clean glass partitions and lush green plants. The overall mood is focused, approachable, and efficient." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWPF9a3QAAZ_XuFgQ0mRF32ENsT2-IPNFqMtGpr2vN0yAhjVfjM5gya1nCSEYcauVGiu_fM30dGvkDa0rhmkbaeRjwf0yswms_MlEBMJHJyM2Wj6FHAgvJzqzXb8369GRCe7fMKRgtxE0ret4PrRHCnI28UyO6zf0zw4JR5zBn6ZDfMfImx7RHQQX9xgtj9ri1-a3b6I2MdeKbYTwiZKv4e_9dn-pwgSl19lGL3wT0cusDYvXdOvs_aAm143xexjZvUekppmaySwkf"/>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-10">
+<!-- Workspace Header (Style Guidance) -->
+<header class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm mb-2">
+<span>Operations</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Operator Dashboard</span>
+</nav>
+<h1 class="font-display-lg text-display-lg text-on-background tracking-tight">Focus Workspace</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg mt-1 max-w-2xl">Good morning, Operator. You have <span class="text-primary font-semibold">12 high-priority tasks</span> requiring immediate attention.</p>
+</div>
+<!-- Quick Scan Hero Search Bar -->
+<div class="relative w-full max-w-md group">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-4 pl-12 pr-4 font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm" placeholder="Scan SKU, Location, or Order ID..." type="text"/>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1">
+<kbd class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-label-md text-on-surface-variant border border-outline-variant">CMD</kbd>
+<kbd class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-label-md text-on-surface-variant border border-outline-variant">K</kbd>
+</div>
+</div>
+</header>
+<!-- Bento-style Task Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Active Pick Lists (Large Primary Card) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl p-8 card-elevation relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+</div>
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">checklist</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md">Active Pick Lists</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Zone A &amp; B • 4 Tasks Pending</p>
+</div>
+</div>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1 hover:underline">
+                        View All <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-4">
+<!-- Task Item -->
+<div class="flex items-center justify-between p-4 bg-background border border-outline-variant rounded-lg hover:border-primary/40 transition-colors group/item">
+<div class="flex items-center gap-4">
+<div class="w-2 h-12 bg-primary rounded-full"></div>
+<div>
+<h4 class="font-body-md text-body-md font-semibold">Batch #9921 - Electronics</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Location: A-12-04 • 14 Items</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="block font-label-md text-label-md text-primary">85% Complete</span>
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md text-label-md hover:brightness-95 transition-all">Resume</button>
+</div>
+</div>
+<!-- Task Item -->
+<div class="flex items-center justify-between p-4 bg-background border border-outline-variant rounded-lg hover:border-primary/40 transition-colors group/item">
+<div class="flex items-center gap-4">
+<div class="w-2 h-12 bg-secondary-fixed-dim rounded-full"></div>
+<div>
+<h4 class="font-body-md text-body-md font-semibold">Batch #9925 - Home Goods</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Location: B-05-11 • 28 Items</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="block font-label-md text-label-md text-on-surface-variant">Queueing...</span>
+<div class="w-32 h-1.5 bg-surface-container-high rounded-full mt-1"></div>
+</div>
+<button class="border border-primary text-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary/5 transition-all">Start Pick</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats / Quick Glance (Right Column) -->
+<div class="md:col-span-4 space-y-gutter">
+<div class="bg-inverse-surface text-on-primary-container p-8 rounded-xl shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-label-md text-label-md opacity-80 mb-1">Efficiency Score</h3>
+<div class="text-[56px] font-bold tracking-tighter leading-none mb-4">98.4<span class="text-primary-fixed-dim">%</span></div>
+<p class="font-body-md text-body-md opacity-70">Top 5% of operators this shift. Keep up the pace!</p>
+</div>
+<div class="absolute -bottom-6 -right-6 text-primary-fixed opacity-10">
+<span class="material-symbols-outlined text-[160px]" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-8 rounded-xl card-elevation">
+<h3 class="font-headline-md text-headline-md mb-6">Device Status</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">battery_charging_80</span>
+<span class="font-label-md text-label-md">Handheld Scanner</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">84%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">wifi</span>
+<span class="font-label-md text-label-md">Warehouse Mesh</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Stable</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error">print</span>
+<span class="font-label-md text-label-md">Label Printer B2</span>
+</div>
+<span class="font-label-sm text-label-sm text-error font-bold">Low Ribbon</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pending Shipments -->
+<div class="md:col-span-6 bg-surface-container-lowest rounded-xl p-8 card-elevation">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<h2 class="font-headline-md text-headline-md">Pending Shipments</h2>
+</div>
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full font-label-sm text-label-sm">8 Critical</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-4 hover:bg-surface-container-low rounded-xl transition-all cursor-pointer">
+<img class="w-12 h-12 rounded-lg bg-surface-container-high object-cover" data-alt="A modern logistical truck icon or logo in a minimalist vector style, using shades of deep teal and slate grey on a crisp white background. The aesthetic is clean, professional, and tech-forward, matching an enterprise inventory management system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmoYWdYbn6Jo39MAcX2M1LcLirzUsyqg2AJ2dZrOgJeDAzJGcJ6JDhjHUOeisp2erGnvEVsls14_JY4ilU90nMitw53smSvy_BN1q_JuDzgFE0FOk6-E9n7GGitq_UtwAMhtFYuP_SOaHqoPOvE1vj2G95TNg5Nv5KbCvPfq8NOg-6WH706fWn7YCuou-hlIlxd8AAmc3AooelrICFu8wS2a4D88Ny3po4y1JFkwOnA_KR-HLMuJiweTm_XTrAu_l7lQuIb5-e6mM4"/>
+<div class="flex-1">
+<h4 class="font-body-md text-body-md font-semibold">Carrier: FedEx Express</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Pick-up window: 14:00 - 16:00</p>
+</div>
+<div class="text-right">
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 hover:bg-surface-container-low rounded-xl transition-all cursor-pointer">
+<img class="w-12 h-12 rounded-lg bg-surface-container-high object-cover" data-alt="A stylized logo for a global logistics company, featuring clean geometric lines and a vibrant teal color palette. The image is presented as a high-quality digital vector with subtle soft shadows against a neutral, off-white background, embodying a premium and efficient brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm7Ls_eowF3wJNpHB84g-x2AKyhcJqDVuOspNqL44fge2rIAd652FYIXFBh5_IuDONb3f8o8mZlttvsYDgR8W_mqM1YMS6Tyyi4YJdEkbZBZpMcoL4Z4SJMh4zWDWNchREvgNlm3-t9z9x-FZfk9j-4yYqhtTLifhuKlr8_h-YrqqqxKSBpcHRpYVWMVCyeuvsx82LiSJU8fP-DQ4P8lDHf42yjOKbkoPWW0eT_o2quotpcmCGtTfdGfZBCfNTna96Dbb_KDc50RuK"/>
+<div class="flex-1">
+<h4 class="font-body-md text-body-md font-semibold">Carrier: DHL Global</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Pick-up window: 15:30 - 17:00</p>
+</div>
+<div class="text-right">
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Incoming Deliveries -->
+<div class="md:col-span-6 bg-surface-container-lowest rounded-xl p-8 card-elevation">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-fixed text-on-primary-fixed-variant rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">move_to_inbox</span>
+</div>
+<h2 class="font-headline-md text-headline-md">Incoming Deliveries</h2>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm">3 Expected Today</span>
+</div>
+<div class="space-y-4">
+<div class="p-6 bg-surface-container-low rounded-xl border border-dashed border-outline hover:border-primary transition-all cursor-pointer flex flex-col justify-center items-center text-center group">
+<div class="w-10 h-10 bg-surface-container-highest rounded-full flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary">add</span>
+</div>
+<span class="font-label-md text-label-md text-primary">Log New Arrival</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Receive stock against purchase order</p>
+</div>
+<div class="flex items-center gap-4 p-4 border border-outline-variant rounded-xl">
+<div class="w-12 h-12 flex items-center justify-center bg-surface-container-high rounded-lg font-label-md text-label-md font-bold text-on-surface-variant">PO</div>
+<div class="flex-1">
+<h4 class="font-body-md text-body-md font-semibold">PO #4401 - TechSource Ltd</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Status: In Transit • ETA 16:45</p>
+</div>
+<div class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded font-label-sm text-label-sm">High Priority</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component implementation) -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface-dim border-t border-outline-variant h-8 flex items-center justify-between px-margin-desktop z-50">
+<div class="flex items-center gap-4">
+<span class="font-label-sm text-label-sm text-secondary">System Health: Operational | v2.4.1</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-opacity" href="#">Documentation</a>
+<a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-opacity" href="#">Support</a>
+</div>
+</footer>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple UI pulse for "Active" items
+        document.addEventListener('DOMContentLoaded', () => {
+            const scanBtn = document.querySelector('button:contains("Quick Scan")');
+            if (scanBtn) {
+                scanBtn.addEventListener('click', () => {
+                    console.log('Scanner UI Triggered');
+                    // In a real app, this would open a camera modal or focus the scan input
+                });
+            }
+        });
+
+        // Add "contains" selector polyfill for the script above if needed or just use selection logic
+        // For this demo, let's just add a basic hover glow to the search bar focus
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

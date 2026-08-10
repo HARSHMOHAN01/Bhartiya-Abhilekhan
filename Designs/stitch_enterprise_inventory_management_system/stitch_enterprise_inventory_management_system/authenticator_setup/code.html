@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Your Account | Kinetic Enterprise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .qr-border-animation {
+            background: linear-gradient(90deg, #004ac6 50%, transparent 50%), linear-gradient(90deg, #004ac6 50%, transparent 50%), linear-gradient(0deg, #004ac6 50%, transparent 50%), linear-gradient(0deg, #004ac6 50%, transparent 50%);
+            background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+            background-size: 15px 2px, 15px 2px, 2px 15px, 2px 15px;
+            background-position: left top, right bottom, left bottom, right top;
+            animation: border-dance 1s infinite linear;
+        }
+        @keyframes border-dance {
+            0% { background-position: left top, right bottom, left bottom, right top; }
+            100% { background-position: left 15px top, right 15px bottom, left bottom 15px, right top 15px; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#004ac6",
+                      "tertiary-fixed": "#6bff8f",
+                      "on-tertiary-container": "#c1ffc5",
+                      "tertiary": "#006229",
+                      "secondary-fixed-dim": "#bdc7d9",
+                      "surface": "#f8f9ff",
+                      "inverse-surface": "#27313e",
+                      "surface-container-low": "#eef4ff",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#007e37",
+                      "inverse-primary": "#b4c5ff",
+                      "on-secondary-fixed": "#121c2a",
+                      "surface-bright": "#f8f9ff",
+                      "secondary-fixed": "#d9e3f6",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-tertiary-fixed-variant": "#005321",
+                      "outline": "#737686",
+                      "primary-fixed": "#dbe1ff",
+                      "on-surface-variant": "#434655",
+                      "on-tertiary-fixed": "#002109",
+                      "error": "#ba1a1a",
+                      "on-background": "#121c28",
+                      "on-secondary-container": "#596373",
+                      "tertiary-fixed-dim": "#4ae176",
+                      "surface-container-lowest": "#ffffff",
+                      "outline-variant": "#c3c6d7",
+                      "surface-container": "#e5eeff",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "surface-container-highest": "#d9e3f4",
+                      "on-secondary-fixed-variant": "#3d4756",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#d9e3f4",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#0053db",
+                      "secondary-container": "#d6e0f3",
+                      "on-surface": "#121c28",
+                      "on-primary-fixed": "#00174b",
+                      "primary-container": "#2563eb",
+                      "secondary": "#555f6f",
+                      "on-secondary": "#ffffff",
+                      "surface-container-high": "#dfe9fa",
+                      "background": "#f8f9ff",
+                      "surface-dim": "#d1dbec",
+                      "on-primary-container": "#eeefff",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "8px",
+                      "lg": "8px",
+                      "xl": "12px",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "xl": "32px",
+                      "sm": "12px",
+                      "xs": "8px",
+                      "gutter": "20px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                      "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center p-gutter selection:bg-primary-fixed-dim">
+<!-- Onboarding Container -->
+<main class="w-full max-w-[520px] animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Logo/Header Area -->
+<div class="flex flex-col items-center mb-xl text-center">
+<div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-md shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-on-primary text-[28px]" data-icon="lock">lock</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs tracking-tight">Kinetic Enterprise</h1>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Security Infrastructure</p>
+</div>
+<!-- Main Card -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm border border-outline-variant overflow-hidden">
+<div class="p-xl">
+<!-- Title & Instructions -->
+<div class="text-center mb-xl">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm">Secure Your Account</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[360px] mx-auto">
+                        Scan the QR code below with your Google Authenticator app to enable two-factor authentication.
+                    </p>
+</div>
+<!-- QR Code Section -->
+<div class="flex justify-center mb-xl relative">
+<div class="relative p-base bg-white rounded-lg border border-outline-variant group">
+<!-- Decorative Corners -->
+<div class="absolute -top-2 -left-2 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+<div class="absolute -top-2 -right-2 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+<div class="absolute -bottom-2 -left-2 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+<div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+<!-- QR Image Placeholder -->
+<div class="w-56 h-56 bg-surface-container flex items-center justify-center rounded overflow-hidden p-md">
+<img class="w-full h-full object-contain" data-alt="A clean, high-contrast black and white digital QR code centered on a white background. The image is crisp and professional, suited for a high-security enterprise application interface. The lighting is uniform and flat to ensure maximum readability, matching a modern SaaS aesthetic with sharp edges and no blur." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD1_R_hMoMgFESDM0QMzFo1w0BCWCHCjllxyiln6jkhWpQa1KGMm-vHCUEIu0rfwM9s7z6ZEgJOKIksGBaHFIPPurd-57GVyrl-8jyqzBzAOqoqa_n0pcrp4oiY_Kr0qkuR_PPUbtMEjzuqUHEqtDgRVZdtnPTCoxa9sMKP8xC6C54gt0m_e4xaZm-KbHLahw2OwLnEoITEWAUiaXKVIb7QJfHuEtudduX7xy-uJUxs8XCmuvR0w-fEVArcTG-kAHQi7rge78YHRvP"/>
+</div>
+</div>
+</div>
+<!-- Manual Entry Section -->
+<div class="bg-surface-container-low rounded-lg p-md mb-xl">
+<div class="flex items-center justify-between mb-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Manual Entry Secret Key</span>
+<span class="font-label-sm text-label-sm text-primary opacity-0 transition-opacity duration-300" id="copy-toast">Copied!</span>
+</div>
+<div class="flex items-center gap-md">
+<code class="flex-grow font-mono text-body-lg font-bold text-on-surface tracking-[0.2em] py-xs bg-transparent border-none">JBSW Y3DP EBLW 6ZHP</code>
+<button class="flex items-center justify-center p-xs hover:bg-primary/10 rounded transition-colors text-primary active:scale-90" onclick="copyToClipboard('JBSW Y3DP EBLW 6ZHP')" title="Copy to clipboard">
+<span class="material-symbols-outlined text-[20px]" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-sm">
+<button class="w-full h-12 bg-primary hover:bg-primary/90 text-on-primary font-headline-md text-body-lg rounded-lg shadow-sm transition-all active:scale-[0.98] flex items-center justify-center gap-xs">
+<span>I've scanned the code</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="w-full h-12 bg-transparent hover:bg-surface-container-low text-on-surface-variant font-body-md rounded-lg transition-colors">
+                        Cancel
+                    </button>
+</div>
+</div>
+<!-- Security Footer -->
+<div class="bg-surface-container-high px-xl py-sm flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant" data-icon="verified_user">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Encrypted 256-bit Setup</span>
+</div>
+</div>
+<!-- Help Link -->
+<p class="mt-lg text-center font-body-md text-on-surface-variant">
+            Having trouble scanning? <a class="text-primary font-bold hover:underline decoration-2 underline-offset-4" href="#">Learn more</a>
+</p>
+</main>
+<script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('copy-toast');
+                toast.classList.remove('opacity-0');
+                toast.classList.add('opacity-100');
+                
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100');
+                    toast.classList.add('opacity-0');
+                }, 2000);
+            });
+        }
+
+        // Add subtle parallax hover effect to the QR container
+        const card = document.querySelector('.bg-surface-container-lowest');
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 768) return;
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 100;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 100;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+        
+        card.style.transition = 'transform 0.1s ease-out';
+    </script>
+</body></html>

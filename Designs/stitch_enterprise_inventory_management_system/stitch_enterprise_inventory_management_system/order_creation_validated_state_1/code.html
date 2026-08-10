@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Creation Flow - Enterprise IMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        .input-focus-ring:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#006229",
+                        "on-tertiary-fixed": "#002109",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#e5eeff",
+                        "primary-container": "#2563eb",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "tertiary-container": "#007e37",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#c3c6d7",
+                        "secondary-container": "#d6e0f3",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-highest": "#d9e3f4",
+                        "inverse-primary": "#b4c5ff",
+                        "secondary-fixed": "#d9e3f6",
+                        "on-primary-fixed": "#00174b",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-container": "#c1ffc5",
+                        "surface-variant": "#d9e3f4",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "primary": "#004ac6",
+                        "on-secondary-container": "#596373",
+                        "primary-fixed": "#dbe1ff",
+                        "on-surface": "#121c28",
+                        "inverse-surface": "#27313e",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary": "#555f6f",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "outline": "#737686",
+                        "surface": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#121c28",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dfe9fa",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-secondary-fixed": "#121c2a",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#eef4ff",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d1dbec",
+                        "on-surface-variant": "#434655"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                        "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-background overflow-hidden h-screen">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-inverse-surface shadow-md flex flex-col z-50">
+<div class="p-6">
+<h1 class="font-headline-md text-headline-md font-bold text-white mb-1">Enterprise IMS</h1>
+<p class="text-secondary-fixed-dim font-label-md">Operational Suite</p>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:bg-secondary-fixed-dim/5 hover:text-white transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:bg-secondary-fixed-dim/5 hover:text-white transition-all duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:bg-secondary-fixed-dim/5 hover:text-white transition-all duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-fixed-dim/10 border-l-4 border-primary-container text-white font-semibold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:bg-secondary-fixed-dim/5 hover:text-white transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto border-t border-white/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-white font-label-md truncate">Admin Workspace</p>
+<p class="text-secondary-fixed-dim text-[10px] truncate">System Administrator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top AppBar -->
+<header class="fixed top-0 right-0 h-16 w-[calc(100%-260px)] bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-6 z-40">
+<div class="flex items-center gap-4 flex-1">
+<h2 class="font-headline-lg text-headline-lg font-black text-primary">Create New Order</h2>
+<div class="relative max-w-md w-full ml-8"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline z-10">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg font-body-md input-focus-ring focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" onblur="setTimeout(() =&gt; document.getElementById('search-dropdown').classList.add('hidden'), 200)" onfocus="document.getElementById('search-dropdown').classList.remove('hidden')" placeholder="Global search..." type="text"/>
+<!-- Search Dropdown -->
+<div class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-lg border border-outline-variant overflow-hidden z-50" id="search-dropdown">
+<div class="p-4">
+<div class="mb-4">
+<p class="text-outline font-label-sm uppercase tracking-wider mb-2">Recent Searches</p>
+<div class="space-y-2">
+<button class="flex items-center gap-2 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded transition-colors text-body-md">
+<span class="material-symbols-outlined text-[18px] text-outline">history</span> Order #552
+                </button>
+<button class="flex items-center gap-2 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded transition-colors text-body-md">
+<span class="material-symbols-outlined text-[18px] text-outline">history</span> Industrial Sensors
+                </button>
+</div>
+</div>
+<div>
+<p class="text-outline font-label-sm uppercase tracking-wider mb-2">Suggested Results</p>
+<div class="space-y-2">
+<button class="flex items-center justify-between w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">person</span>
+<span class="text-body-md">David Chen</span>
+</div>
+<span class="text-[10px] bg-secondary-container px-2 py-0.5 rounded text-on-secondary-container uppercase">Customer</span>
+</button>
+<button class="flex items-center justify-between w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded transition-colors">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">inventory_2</span>
+<span class="text-body-md">Industrial Sensor X-12</span>
+</div>
+<span class="text-[10px] bg-secondary-container px-2 py-0.5 rounded text-on-secondary-container uppercase">Product</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-3 border-t border-outline-variant text-center">
+<button class="text-primary font-label-md hover:underline">View all results</button>
+</div>
+</div></div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-2 cursor-pointer active:opacity-80">
+<div class="text-right">
+<p class="font-label-md text-on-surface">James Wilson</p>
+<p class="text-[10px] text-outline uppercase tracking-wider">Operations Manager</p>
+</div>
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-secondary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of an operations manager in a high-tech corporate office setting. He is wearing a minimalist navy blazer and looking confidently at the camera. The background features blurred glass partitions and soft warm indoor lighting, maintaining a clean and modern professional corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxFK0vI7vZCKxJJkoYSpJgkgKLYYPvjeE6VGgxq8v-ZwRbilPf_mJomYm4KzKfwIxLXGGrD5xlFr6lmfayQDpOvZ5DwhG_8CR_-9yym5yNzM_OBwTMWM2ihLsmuCzDYv3sYpdrt2LSrzBpIyWGAvjH2AWP6M6tQ4PqHyNR0Rcp7LAnaNhLABP5WCEcbz5cd9OLuFswEKreGhD6N0hsS4rFSLJt8C3JSVHLVnPDwEuFST_ER4lvhWBjkC57ZVKAcAalHyy24kMwXXvX"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] mt-16 p-8 h-[calc(100vh-64px)] overflow-hidden flex flex-col"><div class="mb-4 p-3 bg-error-container border border-error rounded-lg flex items-center gap-3 text-on-error-container animate-pulse">
+<span class="material-symbols-outlined">error</span>
+<span class="font-label-md">400 Bad Request: Some fields require correction before submission.</span>
+</div>
+<!-- Order Flow Container -->
+<div class="flex-1 bg-surface-container-lowest rounded-xl shadow-md border border-outline-variant overflow-hidden flex flex-col relative">
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Column: Customer Details -->
+<section class="w-[40%] p-8 border-r border-outline-variant custom-scrollbar overflow-y-auto">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md">Customer Details</h3>
+<p class="text-on-surface-variant text-body-md">Assign this order to a client profile</p>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Search Dropdown -->
+<div>
+<label class="block font-label-md text-on-surface mb-2">Search Customer</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-white border-2 border-outline-variant rounded-lg font-body-md input-focus-ring transition-all" placeholder="Search by name, email or ID..." type="text" value="Global Logistics Inc."/>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant space-y-4">
+<div>
+<label class="block font-label-sm text-outline uppercase mb-1">Company / Full Name</label>
+<input class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg font-body-md input-focus-ring" type="text" value="Global Logistics Inc."/>
+</div>
+<div>
+<label class="block font-label-sm text-outline uppercase mb-1">Email Address</label>
+<input class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg font-body-md input-focus-ring" type="email" value="procurement@globallogistics.com"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-sm text-outline uppercase mb-1">Phone Number</label>
+<input class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg font-body-md input-focus-ring" type="tel" value="+1 (555) 012-3456"/>
+</div>
+<div>
+<label class="block font-label-sm text-outline uppercase mb-1">Tier</label>
+<div class="flex items-center gap-2 h-[42px] px-4 bg-tertiary/10 text-tertiary rounded-lg font-label-md">
+<span class="material-symbols-outlined text-[18px]">verified</span> Enterprise
+                                    </div>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-2">Shipping Address</label>
+<textarea class="w-full px-4 py-3 bg-white border-2 rounded-lg font-body-md input-focus-ring transition-all border-error" rows="3">4522 Industrial Pkwy, Suite 400
+Chicago, IL 60609
+United States</textarea><p class="text-error text-[11px] mt-1 font-medium">Invalid address: zip code missing</p>
+</div>
+</div>
+</section>
+<!-- Right Column: Product Selection -->
+<section class="w-[60%] p-8 bg-surface-container-low custom-scrollbar overflow-y-auto">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">inventory</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md">Product Selection</h3>
+<p class="text-on-surface-variant text-body-md">Configure items and quantities</p>
+</div>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white font-label-md rounded-lg hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span> Add Item
+                        </button>
+</div>
+<!-- Dynamic List -->
+<div class="space-y-4">
+<!-- Product Item 1 -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant flex items-center gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up shot of high-quality industrial hardware components, specifically precision-machined steel bearings. The lighting is crisp and cold, emphasizing the metallic sheen and industrial durability. The background is a clean white laboratory-style setting, fitting an enterprise inventory management theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqDuLbtvvT6LBiUzYugzSKXRSMtpxma-4416rs5Jr5IT6_ziJXgDZ3RCIL5nhNOBvwFJTaLJfce_AHrW36tq2Dr7BPo8kQmrxq_nB70FPeTe1CCXXME7AvXctybG0rzdiSXeYkXyA2TFvSGcFl4Md9OvJolJBMeTHYtdPnS6MJGrV2gSJMhU0nBxBj3hTC5tRaEDI-qdqEUHVgi4C3xUAah1NXhXPdVqPz6-ptxfUxjpHDCFCtUYDwNI4QltJ5PQRSs5fHYOmrMj9D"/>
+</div>
+<div class="flex-1">
+<p class="font-label-sm text-outline uppercase">SKU: IND-4492-X</p>
+<h4 class="font-body-lg font-semibold text-on-surface">Heavy Duty Steel Bearings</h4>
+<p class="text-on-surface-variant text-label-md">$125.00 / unit</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm border border-outline-variant hover:bg-surface-container transition-colors" onclick="updateQty(this, -1)">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-body-lg font-bold min-w-[2ch] text-center qty-val">12</span>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm border border-outline-variant hover:bg-surface-container transition-colors" onclick="updateQty(this, 1)">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<div class="w-28 text-right">
+<p class="text-outline font-label-sm uppercase">Subtotal</p>
+<p class="font-headline-md text-primary">$1,500.00</p>
+</div>
+<button class="p-2 text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Product Item 2 -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant flex items-center gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Macro photography of sleek, modern black industrial cables and connectors. The scene is lit with professional studio lighting that highlights the textures of the high-grade materials. The composition is minimalist and high-tech, representing premium logistical components in an operational suite." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRMydVEh-4_Zs2Q2ZZ4NOYj9Q_HoSEr6rU7QKCu_-h9opvzfeWspX0-quiTJIjtYXc4zBYniiSd3LYEoeorUXBU_iYinxpeNFNl3YdYqvcqxs6CdS8fxIdzPsge-ygI3pkCs6XyavHsuOuQX3vkqP-AYkjEUZCPPAyZjXIMWWxIk-t3zfy_tG6X0vjL-3ZFnaHG-YvOh8XLsGZE9vnHo7NVECAwDk1vZW_0cp0wc8XjweeZlswkXlN1IjGiPeEPN29JCFqlODvjOno"/>
+</div>
+<div class="flex-1">
+<p class="font-label-sm text-outline uppercase">SKU: EL-0091-B</p>
+<h4 class="font-body-lg font-semibold text-on-surface">Integrated Wiring Harness</h4>
+<p class="text-on-surface-variant text-label-md">$420.00 / unit</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low px-3 py-2 rounded-lg border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm border border-outline-variant hover:bg-surface-container transition-colors" onclick="updateQty(this, -1)">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="font-body-lg font-bold min-w-[2ch] text-center qty-val">5</span>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm border border-outline-variant hover:bg-surface-container transition-colors" onclick="updateQty(this, 1)">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<div class="w-28 text-right">
+<p class="text-outline font-label-sm uppercase">Subtotal</p>
+<p class="font-headline-md text-primary">$2,100.00</p>
+</div>
+<button class="p-2 text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Empty State Placeholder -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-outline opacity-60">
+<span class="material-symbols-outlined text-[48px] mb-2">add_circle</span>
+<p class="font-label-md">Click 'Add Item' to include more products</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Section -->
+<footer class="h-24 bg-white border-t border-outline-variant flex items-center justify-between px-8">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">calendar_today</span>
+<span class="font-body-md text-on-surface">Order Date: <span class="font-bold">Oct 24, 2023</span></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">local_shipping</span>
+<span class="font-body-md text-on-surface">Estimated Delivery: <span class="font-bold">3-5 Days</span></span>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-outline font-label-md uppercase tracking-wider">Estimated Total</p><div class="flex items-center justify-end gap-1 text-tertiary font-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+<span>Price verified by system</span>
+</div>
+<div class="bg-surface-container px-6 py-2 rounded-lg inline-block border border-outline-variant mt-1">
+<span class="font-display-lg text-display-lg text-primary">$3,600.00</span>
+<span class="text-outline font-label-sm ml-1 uppercase">USD</span>
+</div>
+</div>
+<button class="h-16 px-10 bg-[#22C55E] text-white font-headline-md rounded-xl flex items-center gap-3 hover:brightness-105 active:scale-[0.98] transition-all shadow-lg shadow-green-500/20" id="submitBtn">
+<span class="material-symbols-outlined">check_circle</span>
+                        Submit Order
+                    </button>
+</div>
+</footer>
+</div>
+<!-- System Status Bar -->
+<div class="mt-4 flex items-center justify-between text-outline text-[11px] uppercase tracking-widest px-1">
+<div class="flex items-center gap-4">
+<span class="">System Status: <span class="text-tertiary">Operational</span></span>
+<span class="">Version: 4.2.0-STABLE</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="">Environment: Production Cluster-01</span>
+<span class="">Last Sync: 2m ago</span>
+</div>
+</div>
+</main>
+<!-- Simple Interactivity Script -->
+<script>
+        function updateQty(btn, delta) {
+            const container = btn.closest('.flex');
+            const display = container.querySelector('.qty-val');
+            let current = parseInt(display.textContent);
+            current = Math.max(0, current + delta);
+            display.textContent = current;
+            
+            // Visual feedback on total (mock calculation)
+            const totalDisplay = document.querySelector('.text-display-lg');
+            const currentTotal = 3600;
+            const mockNewTotal = currentTotal + (delta * 125); // Just a simple mock
+            totalDisplay.textContent = '$' + mockNewTotal.toLocaleString('en-US', {minimumFractionDigits: 2});
+        }
+
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            this.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Processing...';
+            this.classList.add('opacity-80', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                this.innerHTML = '<span class="material-symbols-outlined">done_all</span> Order Confirmed';
+                this.style.backgroundColor = '#006229';
+            }, 1500);
+        });
+    </script>
+</body></html>
