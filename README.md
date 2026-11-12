@@ -18,7 +18,7 @@
 
 ---
 
-## 🚀 Getting Started Locally
+##  Getting Started Locally
 
 ### 1. Configure Secrets
 Create a local `.env` environment file:
