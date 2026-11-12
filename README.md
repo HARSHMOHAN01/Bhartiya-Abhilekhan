@@ -4,7 +4,7 @@
 
 ---
 
-## 🏗️ Architecture & Features
+##  Architecture & Features
 
 - **/backend**: FastAPI (Python 3.10), SQLAlchemy (PostgreSQL), Pydantic schemas, and PyOTP.
   - **Negative Inventory Constraint**: Physically enforced in-database (`CheckConstraint('quantity >= 0')`).
