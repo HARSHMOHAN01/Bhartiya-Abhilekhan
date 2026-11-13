@@ -33,7 +33,7 @@ docker compose up -d --build
 ```
 - **Web Interface**: Open [http://localhost] on port `80` or already deployed link: "https://bhartiya-abhilekhan.vercel.app/".
 
-### 🔑 Test Authenticator Credentials (OTP)
+###  Test Authenticator Credentials (OTP)
 For rapid local testing, the database is seeded on startup with two default accounts. Use Google Authenticator or another TOTP generator app:
 
 - **System Admin**:
