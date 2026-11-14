@@ -46,7 +46,7 @@ For rapid local testing, the database is seeded on startup with two default acco
 
 ---
 
-## ☁️ Cloud Deployment Guide
+##  Cloud Deployment Guide
 
 ### Git Initialisation
 ```bash
